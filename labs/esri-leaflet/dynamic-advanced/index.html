@@ -1,0 +1,70 @@
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title>Simple DynamicMapLayer</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+  <!-- Load Leaflet from CDN-->
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v1.0.0-beta.2/leaflet.css" />
+  <script src="http://cdn.leafletjs.com/leaflet/v1.0.0-beta.2/leaflet.js"></script>
+
+  <!-- Load Esri Leaflet from CDN -->
+  <script src="esri-leaflet.js"></script>
+
+  <style>
+    body { margin:0; padding:0; }
+    #map { position: absolute; top:0; bottom:0; right:0; left:0; }
+  </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script>
+  
+  
+  var base = L.esri.basemapLayer('Gray');
+
+  var population = L.esri.dynamicMapLayerAdvanced({
+    url: 'http://services.arcgisonline.com/arcgis/rest/services/Demographics/USA_Median_Age/MapServer',
+    opacity: 0.7,
+    f:'image',
+    zIndex:3,
+  });
+
+  var elevation = L.esri.dynamicMapLayerAdvanced({
+    url: 'http://services.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer',
+    opacity: 0.7,
+    f:'image',
+    zIndex:2
+  });
+
+  var ocean = L.esri.dynamicMapLayerAdvanced({
+    url: 'http://services.arcgisonline.com/arcgis/rest/services/Ocean/World_Ocean_Base/MapServer',
+    opacity: 0.7,
+    f:'image',
+    zIndex:1
+  });
+
+  var baseMaps = {
+    "Grayscale": base
+  };
+  
+  var overlayMaps = {
+        "Elevation": elevation,
+        "Population": population,
+        "Ocean": ocean
+  };
+
+  var map = L.map('map', {
+    center: [0, 0],
+    zoom: 3,
+    layers: [base, elevation]
+  });
+
+  L.control.layers(baseMaps, overlayMaps,{autoZIndex:false}).addTo(map);
+
+</script>
+
+</body>
+</html>
