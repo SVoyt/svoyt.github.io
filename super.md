@@ -3,4 +3,4 @@ layout: default
 title: Super Text
 ---
 
-{% tf super.md %}
+{% translate_file super.md %}
