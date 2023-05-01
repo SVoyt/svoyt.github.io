@@ -33,7 +33,6 @@ github_username:  jekyll
 #theme: minima
 remote_theme: just-the-docs/just-the-docs
 plugins:
-  - jekyll-feed
   - jekyll-multiple-languages-plugin
 
 languages: ["ru", "en"]
