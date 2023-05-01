@@ -33,10 +33,12 @@ github_username:  jekyll
 #theme: minima
 remote_theme: just-the-docs/just-the-docs
 plugins:
-  - jekyll-multiple-languages-plugin
+  - jekyll-polyglot
 
 languages: ["ru", "en"]
-exclude_from_localizations: ["javascript", "images", "css"]
+default_lang: "ru"
+exclude_from_localization: ["javascript", "images", "css", "public"]
+parallel_localization: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.
